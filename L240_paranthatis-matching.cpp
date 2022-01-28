@@ -57,7 +57,7 @@ int isBalanced(char *exp){
 }
 
 int main(){
-    char *exp="((a+b)*(c-d))";
+    char exp[]="((a+b)*(c-d))";
     if(isBalanced(exp)){
         cout<<"\nExpresion is balanced\n\n";
     }
