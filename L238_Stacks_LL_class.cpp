@@ -1,81 +1,84 @@
 #include<iostream>
 using namespace std;
 
-struct Node{
-    int data;
-    struct Node *next;
-}*top=NULL;
+class Node{
+    public:
+        int data;
+        Node* next;
+};
 
-void push(int x){
-    struct Node *t;
-    t=new struct Node;
-    if(t==NULL){
-        cout<<"stack overflow\n";
-    }
-    else{
-        t->data=x;
-        t->next=top;
-        top=t;
-        cout<<x<<" pushed\n";
-    }
-}
-
-int pop(){
-    struct Node *p;
-    int x=-1;
-    if(top==NULL){
-        cout<<"stack underflow\n";
-    }
-    else{
-        p=top;
-        top=top->next;
-        x=p->data;
-        delete p;
-    }
-    return x;
-}
-
-void peek(){
-    if(top==NULL){
-        cout<<"stack underflow\n";
-    }
-    else{
-        cout<<"\ntop element: "<<top->data;
-    }
-}
-
-int isEmpty(){
-    if(top==NULL){
-        return 1;
-    }
-    return 0;
-}
-
-int isFull(){
-    if(top!=NULL){
-        return 1;
-    }
-    return 0;
-}
-
-void display(){
-    struct Node *p;
-    p=top;
-    cout<<"-> ";
-    while(p!=NULL){
-        cout<<p->data<<" ";
-        p=p->next;
-    }
-}
+class stacks{
+    private:
+        Node* top;
+    public:
+        stacks(){
+            top=nullptr;
+        }
+        ~stacks(){
+                Node* p=top;
+                while(top){
+                    top=top->next;
+                    delete p;
+                    p=top;
+                }
+        }
+        void push(int x){
+            Node *t=new Node;
+            if(t==nullptr){
+                cout<<"stack overflow\n";
+            }
+            else{
+                t->data=x;
+                t->next=top;
+                top=t;                
+            }
+        }
+        int pop(){
+            Node *p;
+            int x=-1;
+            if(top==nullptr){
+                cout<<"stack underflow\n";
+            }
+            else{
+                p=top;
+                x=p->data;
+                top=top->next;
+                delete p;
+            }
+            return x;
+        }    
+        int isFull(){
+            Node *t=new Node;
+            if(t==nullptr){
+                delete t;
+                return 1;
+            }
+            else{
+                delete t;
+                return 0;
+            }
+        }
+        int isEmpty(){
+            return top?0:1;
+        }
+        void display(){
+            while(top!=NULL){
+                cout<<" -> "<<top->data;
+                top=top->next;
+            } 
+            cout<<endl;           
+        }    
+};
 
 int main(){
-    push(10);
-    push(20);
-    push(30);
-    cout<<pop()<<" poped";
-    peek();
-    cout<<"\n"<<isFull();
-    cout<<"\n";
-    display();
+    stacks st;
+    st.push(10);
+    st.push(20);
+    st.push(30);
+    st.push(50);
+    st.pop();
+    st.display();
+    cout<<st.isFull();
+    cout<<endl<<st.isEmpty();
 return 0;
 }
