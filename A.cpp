@@ -51,8 +51,8 @@
     };
     int main()
     {
-        arr a1(10);
-        arr a2(10);
+        arr a1(20);
+        arr a2(20);
         // arr a3(20);
         a1.create();
         a2.create();
