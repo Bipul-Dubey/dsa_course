@@ -55,7 +55,7 @@ int rfibadd(int n){
 int main(){
     int n=10;
     cout<<"     using loop     \n";
-    fib(n);
+    fib(n+1);
     cout<<"\nadd of this fib: ";
     cout<<addfib(n);
     cout<<"\n     using recursion     \n";
