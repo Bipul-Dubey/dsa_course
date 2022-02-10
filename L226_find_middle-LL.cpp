@@ -47,8 +47,8 @@ int middle(struct Node *p){
 }
 
 int main(){
-    int a[]={1,2,3,4,5};
-    create(a,5);
+    int a[]={8,6,3,9,10,4,2};
+    create(a,7);
     display(head);
     //cout<<endl<<length(head);
     cout<<endl;
