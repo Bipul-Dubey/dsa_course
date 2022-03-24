@@ -8,6 +8,29 @@ void display(int arr[],int length){
     cout<<endl;
 }
 
+void AuxiliaryReverse(int a[],int length){
+    int b[length];
+    for(int i=length-1,j=0;i>=0;i--,j++){
+        b[j]=a[i];
+    }
+    for(int i=0,j=0;i<length;i++,j++){
+        a[i]=b[j];
+    }
+}
+
+void Swap(int *a,int *b){
+    int temp=*a;
+        *a=*b;
+        *b=temp;
+
+}
+
+void SwapReverse(int arr[],int length){
+    for(int i=0,j=length-1;i<j;i++,j--){
+        Swap(&arr[i],&arr[j]);
+    }
+}
+
 void RightRotate(int arr[],int length,int shift){
     int temp=0,n=0;
     while(n<shift){
