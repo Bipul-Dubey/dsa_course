@@ -5,8 +5,7 @@ class Diagonal{
     int *a;
     int n;
     public:
-        Diagonal
-    (int n){
+        Diagonal(int n){
             this->n=n;
             a=new int[n];
         }
