@@ -46,6 +46,6 @@ void convert(string infix){
 }
     
 int main(){
-    convert("a+b+c");
+    convert("a+b*c/d");
     return 0;
 }
