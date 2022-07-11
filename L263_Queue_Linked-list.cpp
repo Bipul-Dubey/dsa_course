@@ -1,15 +1,51 @@
 #include<iostream>
 using namespace std;
 
-struct Node{
-    int data;
-    struct Node *next;
-}*front=0,*rear=0;
+class Node{
+    public:
+        int data;
+        Node *next;
+};
 
-void Enqueue(int x){
+class Queue{
+    private:
+        Node *front;
+        Node *rear;
+    public:
+        Queue();
+        ~Queue();
+        bool isEmpty();
+        bool isFull();
+        void enqueue(int x);
+        void dequeue();
+        void display();
+};
+
+Queue::Queue(){
+    front=NULL;
+    rear=NULL;
+}
+Queue::~Queue(){
+    Node *p=front;
+    while(front){
+        front=front->next;
+        delete p;
+        p=front;
+    }
+}
+bool Queue::isEmpty(){
+    return front==NULL;
+}
+bool Queue::isFull(){
+    Node *t=new Node;
+    if(t==NULL)
+        return 1;
+    return 0;
+}
+void Queue::enqueue(int x){
     Node *t=new Node;
     if(t==NULL){
-        cout<<"overflow\n";
+        cout<<"Overflow\n";
     }
     else{
         t->data=x;
@@ -21,64 +57,44 @@ void Enqueue(int x){
             rear->next=t;
             rear=t;
         }
-        cout<<rear->data<<" inserted\n";
+        cout<<x<<" enqueue\n";
     }
 }
 
-int dequeue(){
-    int x=-1;
-    struct Node *p;
-    if(front==0){
-        cout<<"underflow";
+void Queue::dequeue(){
+    if(front==NULL){
+        cout<<"Underflow\n";
     }
     else{
+        int x=-1;
+        Node *p;
         p=front;
-        front=front->next;
         x=p->data;
+        front=front->next;
         delete p;
-    }
-    return x;
-}
-
-void peek(){
-    if(front!=NULL){
-        cout<<"front element: "<<front->data<<endl;
-    }
-    else{
-        cout<<"Empty\n";
+        cout<<x<<" dequeue\n";
     }
 }
 
-void display(){
-    if(front==0){
-        cout<<"Empty\n";
+void Queue::display(){
+    Node *p;
+    p=front;
+    while(p!=NULL){
+        cout<<p->data<<" ";
+        p=p->next;
     }
-    else{
-            do{
-                cout<<front->data<<" ";
-                front=front->next;
-            }while(front!=NULL);
-        cout<<endl;
-    }
-}
-
-int isEmpty(){
-    return (rear==0 && front==0);
+    cout<<endl;
 }
 
 int main(){
-    struct Node q;
-    Enqueue(10);
-    Enqueue(20);
-    Enqueue(30);
-    Enqueue(40);
-    Enqueue(50);
-    Enqueue(60);
-    Enqueue(70);
-    cout<<dequeue()<<endl;
-    cout<<dequeue()<<endl;
-    peek();
-    display();
-    cout<<isEmpty();
-return 0;
+    Queue q;
+    cout<<q.isEmpty()<<endl;
+    cout<<q.isFull()<<endl;
+    q.enqueue(5);
+    q.enqueue(15);
+    q.enqueue(25);
+    q.enqueue(35);
+    q.dequeue();
+    q.display();
+    return 0;
 }
